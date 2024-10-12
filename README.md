@@ -20,7 +20,7 @@ Shoutout to Mugi and zhekch for inspo.
 - To eventually deploy this project to the web through [github pages](https://pages.github.com/)
 
 ## Progress
-- [x] Burst WPM
+- [x] ~Burst WPM~
 - [ ] Standard WPM
 - [ ] Speedometer
 - [ ] Accelerometer
