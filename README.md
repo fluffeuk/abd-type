@@ -19,6 +19,14 @@ Shoutout to Mugi and zhekch for inspo.
 - A neat, customizable GUI 
 - To eventually deploy this project to the web through [github pages](https://pages.github.com/)
 
+## Progress
+- [x] Burst WPM
+- [ ] Standard WPM
+- [ ] Speedometer
+- [ ] Accelerometer
+- [ ] Customisation menu
+- [ ] Github Pages
+
 ## Learning Goals
 - Get better at Python and learn more about terminal interaction through libraries like curses
 - Maybe learn about classes and other aspects of OOP if I can
