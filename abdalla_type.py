@@ -1,6 +1,5 @@
 import curses
 from curses import wrapper
-
 import random
 import time
 
@@ -19,13 +18,21 @@ def comparech(pressed_key, correct_key_index, s):
     correct_key = s[correct_key_index]
     return pressed_key == correct_key
 
-# WPM checker(burst, refreshes for every word typed, or every element in the user input list)
+ # WPM checker(burst, refreshes for every word typed, or every element in the user input list)
 def burstwpm(stdscr, user_input, start_time):
     time_elapsed = time.time() - start_time
     if time_elapsed > 0 and len(user_input) > 0:
-        stdscr.addstr(2, 0, f"{(len(user_input)/(time_elapsed) * 60):.2f}WPM")
+        words_typed = len((''.join(user_input)).split())
+        
+        # Save cursor position
+        y, x = stdscr.getyx()
+        
+        stdscr.addstr(2, 0, f"{(words_typed/(time_elapsed) * 60):.2f}WPM")
         #without the 60 its words per second. you want to times it by 60 to get a minute
         
+        stdscr.refresh()
+        
+        stdscr.move(y,x)
     
 # displaying in terminal
 def main(stdscr):   
@@ -34,19 +41,22 @@ def main(stdscr):
     
     random_sentence = sentencegen("1000-most-common-words.txt", 15)
     user_input = []
+    #words = ''.join(user_input).split()
     
     stdscr.addstr(0, 0, random_sentence, curses.A_DIM)
     keypress_count = 0
-    last_word_count = 0
+    timer_started = False
+    start_time = None
     
     stdscr.move(0, 0)
     
+    #procedure followed for every character typed
     while keypress_count < len(random_sentence):
         key = stdscr.getkey()
         
-        # store the time at which the user started typing
-        if not user_input:
+        if not timer_started:
             start_time = time_start()
+            timer_started = True
             
         if key == "\x7f":
             if keypress_count > 0:
@@ -60,7 +70,9 @@ def main(stdscr):
             stdscr.addstr(0, keypress_count, key)
             user_input.append(key)
             keypress_count += 1
-            
+        
+            if key == " ":
+                burstwpm(stdscr, user_input, start_time)    
         stdscr.refresh()
         
 wrapper(main)
