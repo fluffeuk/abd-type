@@ -17,7 +17,6 @@ Shoutout to Mugi and zhekch for inspo.
 - A speedometer that updates in real time, in coordination with the user's WPM.
 - An 'accelerometer' which updates according to the change in speed over time (acceleration)
 - A neat, customizable GUI 
-- To eventually deploy this project to the web through [github pages](https://pages.github.com/)
 
 ## Progress
 - [x] ~Burst WPM~
